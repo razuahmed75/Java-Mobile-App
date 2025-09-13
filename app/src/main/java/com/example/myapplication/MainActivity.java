@@ -2,15 +2,18 @@ package com.example.myapplication;
 import android.os.Bundle;
 import android.text.Editable;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.home);
+        getSupportActionBar().setTitle("Home Screen");
+
         TextView textView = findViewById(R.id.textView);
         EditText editText = findViewById(R.id.editTextText2);
         Button button = findViewById(R.id.button2);
@@ -34,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Editable edit =  editText.getText();
                 textView.setText(edit);
                 edit.clear();
+                Toast.makeText(MainActivity.this,"Successfully Submitted", Toast.LENGTH_LONG).show();
             }
         });
     }
